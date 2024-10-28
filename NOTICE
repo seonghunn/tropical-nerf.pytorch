@@ -1,0 +1,49 @@
+TropicalNeRF
+Copyright (c) 2024-present NAVER Cloud Corp.
+
+Creative Commons ATTRIBUTION-SHAREALIKE 4.0 International
+
+A summary of the CC BY-SA 4.0 license is located here:
+    https://creativecommons.org/licenses/by-sa/4.0/
+
+This project contains subcomponents with separate copyright notices and license terms.
+Your use of the source code for these subcomponents is subject to the terms and conditions of the following licenses.
+
+=====
+
+NVIDIAGameWorks/kaolin
+https://github.com/NVIDIAGameWorks/kaolin
+
+
+Most of Kaolin's repository is under Apache v2.0 license, except under kaolin/non_commercial which is under NSCL license restricted to non commercial usage for research and evaluation purposes. For example, FlexiCubes method is included under noncommercial.
+
+---
+
+Copyright (c) 2019-2023 NVIDIA CORPORATION. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+========================================================================
+
+The non_commercial portions of this project, located under `kaolin/non_commercial`
+and `tests/python/kaolin/non_commercial`, are licensed under NSCL
+
+Copyright (c) 2023, NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
+
+NVIDIA CORPORATION & AFFILIATES and its licensors retain all intellectual property
+and proprietary rights in and to this software, related documentation
+and any modifications thereto.  Any use, reproduction, disclosure or
+distribution of this software and related documentation without an express
+license agreement from NVIDIA CORPORATION & AFFILIATES is strictly prohibited.
+
+=====

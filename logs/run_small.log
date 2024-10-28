@@ -1,0 +1,149 @@
+Namespace(cache=True, dataset='bunny', eval=True, model_size='small', seed=1)
+Loading bun_zipper.ply ...
+Done.
+BVH initialized.
+The pretrained model loaded from /mnt/tropical-nerf-public/tropical/stanford/models/bunny/bunny_sdf_small_1.pth
+
+# of vertices and edges = 12266/19615 => 4567/8717, 4570 faces,  take 0.87
+Finished training.
+Ours: (4567, 3)/(27358, 3)
+Marching Cubes Results:
+#samples, #vertices, CD, AD, time
+Ours,  4567, 0.000743,  2.9, 0.87
+ 512, 373766, 0.000000,  0.0, 7.30
+  16,   304, 0.012148, 11.0, 0.00
+  24,   712, 0.006997,  8.8, 0.00
+  32,  1356, 0.003953,  6.9, 0.00
+  40,  2146, 0.003245,  6.5, 0.01
+  48,  3106, 0.002142,  5.1, 0.01
+  56,  4254, 0.001532,  4.3, 0.01
+  64,  5636, 0.001353,  4.1, 0.02
+ 128, 22936, 0.000423,  2.5, 0.10
+ 192, 52076, 0.000174,  1.6, 0.37
+ 224, 71022, 0.000156,  1.6, 0.56
+ 256, 92988, 0.000098,  1.3, 0.87
+
+Namespace(cache=True, dataset='dragon', eval=True, model_size='small', seed=4)
+Loading dragon_vrip_res3.ply ...
+Done.
+BVH initialized.
+The pretrained model loaded from /mnt/tropical-nerf-public/tropical/stanford/models/dragon/dragon_sdf_small_4.pth
+
+# of vertices and edges = 27284/34116 => 5095/9741, 5095 faces,  take 1.82
+Finished training.
+Ours: (5095, 3)/(30501, 3)
+Marching Cubes Results:
+#samples, #vertices, CD, AD, time
+Ours,  5095, 0.001093,  4.5, 1.82
+ 512, 413951, 0.000000,  0.0, 7.50
+  16,   292, 0.024288, 23.4, 0.00
+  24,   751, 0.008410, 12.0, 0.00
+  32,  1427, 0.005853,  9.6, 0.00
+  40,  2243, 0.004335,  9.4, 0.01
+  48,  3360, 0.002749,  6.7, 0.01
+  56,  4585, 0.001892,  5.7, 0.01
+  64,  6097, 0.001826,  5.3, 0.02
+ 128, 25225, 0.000533,  3.1, 0.10
+ 192, 57368, 0.000243,  2.2, 0.35
+ 224, 78024, 0.000196,  2.0, 0.61
+ 256, 102549, 0.000132,  1.6, 0.88
+
+Namespace(cache=True, dataset='happy', eval=True, model_size='small', seed=2)
+Loading happy_vrip_res3.ply ...
+Done.
+BVH initialized.
+The pretrained model loaded from /mnt/tropical-nerf-public/tropical/stanford/models/happy/happy_sdf_small_2.pth
+
+# of vertices and edges = 29082/32068 => 3699/6957, 3708 faces,  take 3.60
+Finished training.
+Ours: (3699, 3)/(22141, 3)
+Marching Cubes Results:
+#samples, #vertices, CD, AD, time
+Ours,  3699, 0.001663,  7.0, 3.60
+ 512, 296380, 0.000000,  0.0, 7.47
+  16,   218, 0.018094, 19.4, 0.00
+  24,   510, 0.010885, 17.0, 0.00
+  32,  1026, 0.006934, 13.6, 0.00
+  40,  1574, 0.006300, 14.0, 0.00
+  48,  2402, 0.003937, 10.6, 0.01
+  56,  3280, 0.002881,  9.2, 0.01
+  64,  4330, 0.002550,  8.6, 0.01
+ 128, 18052, 0.000791,  5.1, 0.10
+ 192, 40966, 0.000345,  3.5, 0.38
+ 224, 55728, 0.000333,  3.4, 0.62
+ 256, 73264, 0.000202,  2.8, 0.85
+
+Namespace(cache=True, dataset='armadillo', eval=True, model_size='small', seed=1)
+Loading armadillo.ply ...
+Done.
+BVH initialized.
+The pretrained model loaded from /mnt/tropical-nerf-public/tropical/stanford/models/armadillo/armadillo_sdf_small_1.pth
+
+# of vertices and edges = 11285/19292 => 4800/9087, 4832 faces,  take 1.69
+Finished training.
+Ours: (4800, 3)/(28691, 3)
+Marching Cubes Results:
+#samples, #vertices, CD, AD, time
+Ours,  4800, 0.001542,  6.1, 1.69
+ 512, 414271, 0.000000,  0.0, 7.28
+  16,   317, 0.017155, 18.8, 0.00
+  24,   756, 0.009904, 15.1, 0.00
+  32,  1450, 0.006357, 12.6, 0.00
+  40,  2343, 0.004906, 11.6, 0.01
+  48,  3420, 0.003391,  9.4, 0.01
+  56,  4700, 0.002397,  7.4, 0.01
+  64,  6169, 0.002101,  7.2, 0.02
+ 128, 25266, 0.000688,  4.3, 0.10
+ 192, 57559, 0.000312,  2.9, 0.42
+ 224, 78374, 0.000265,  2.7, 0.56
+ 256, 102921, 0.000178,  2.3, 0.91
+
+Namespace(cache=True, dataset='drill', eval=True, model_size='small', seed=9)
+Loading drill_shaft_vrip.ply ...
+Done.
+BVH initialized.
+The pretrained model loaded from /mnt/tropical-nerf-public/tropical/stanford/models/drill/drill_sdf_small_9.pth
+
+# of vertices and edges = 1615/2769 => 706/1269, 724 faces,  take 0.70
+Finished training.
+Ours: (706, 3)/(4198, 3)
+Marching Cubes Results:
+#samples, #vertices, CD, AD, time
+Ours,   706, 0.001629,  6.7, 0.70
+ 512, 63767, 0.000000,  0.0, 7.36
+  16,     0, 0.000000,  0.0, 0.00
+  24,    24, 0.651709, 67.7, 0.00
+  32,   201, 0.025720, 24.7, 0.00
+  40,   328, 0.017761, 26.7, 0.01
+  48,   414, 0.013278, 21.4, 0.01
+  56,   572, 0.007108, 17.3, 0.01
+  64,   939, 0.004769, 14.6, 0.04
+ 128,  3880, 0.001546,  7.7, 0.10
+ 192,  8708, 0.000910,  5.3, 0.39
+ 224, 11874, 0.000604,  4.2, 0.65
+ 256, 15574, 0.000456,  3.5, 0.84
+
+Namespace(cache=True, dataset='lucy', eval=True, model_size='small', seed=13)
+Loading lucy.ply ...
+Done.
+BVH initialized.
+The pretrained model loaded from /mnt/tropical-nerf-public/tropical/stanford/models/lucy/lucy_sdf_small_13.pth
+
+# of vertices and edges = 5446/9587 => 2388/4591, 2367 faces,  take 3.39
+Finished training.
+Ours: (2388, 3)/(14329, 3)
+Marching Cubes Results:
+#samples, #vertices, CD, AD, time
+Ours,  2388, 0.001649,  6.5, 3.39
+ 512, 184944, 0.000000,  0.0, 7.27
+  16,   126, 0.021910, 22.7, 0.00
+  24,   298, 0.010759, 17.2, 0.00
+  32,   602, 0.006895, 13.4, 0.00
+  40,   904, 0.006106, 14.4, 0.01
+  48,  1520, 0.003591, 10.7, 0.01
+  56,  1986, 0.002743,  8.4, 0.01
+  64,  2694, 0.002367,  8.0, 0.02
+ 128, 11208, 0.000848,  4.8, 0.10
+ 192, 25476, 0.000413,  3.4, 0.40
+ 224, 34646, 0.000364,  3.2, 0.63
+ 256, 45720, 0.000248,  2.6, 0.84
