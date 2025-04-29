@@ -70,14 +70,16 @@ CACHE = args.cache
 if "small" == args.model_size:
     r_min = 2
     r_max = 32
+    T = 21 if "bunny" or "bunny_npy" in args.dataset.lower() else 19
 elif "medium" == args.model_size:
     r_min = 4
     r_max = 64
+    T = 21 if "bunny" or "bunny_npy" in args.dataset.lower() else 19
 elif "large" == args.model_size:
     r_min = 8
     r_max = 128
     # This option is not significant; but it matchs with the released models.
-    T = 21 if "bunny" in args.dataset.lower() else 19
+    T = 21 if "bunny" or "bunny_npy" in args.dataset.lower() else 19
 
 net = Net(num_layers=3, num_hidden=16, levels=4, r_min=r_min, r_max=r_max, T=T).cuda()
 training_data = StanfordDataset(args.dataset)

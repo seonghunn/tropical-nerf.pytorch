@@ -17,3 +17,11 @@
 /tropical/stanford/lucy
 frames/
 sftp-config.json
+*.tgz
+*.tar.gz
+*.tar.xz
+*.tar.bz2
+*.tar.7z
+*.tar.Z
+*.tar.lzma
+*.tar.lz

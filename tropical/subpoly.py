@@ -613,7 +613,7 @@ def extract_faces(vertices: Tensor, edges: Tensor, net: Module, outputs: Tensor 
     if DEBUG:
         t = time.time()
     mean_points.requires_grad = True
-    jacobians = net.normal(mean_points)
+    jacobians = - net.normal(mean_points)
     if DEBUG:
         print(f"- net.normal() took {time.time() - t:.3f}")
 
