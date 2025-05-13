@@ -662,25 +662,42 @@ def r_idx_as_tensor(r_idx: Tensor, dim: int, tensor: Tensor, null_value=-1) \
     Returns:
         Tensor: Left-aligned region x a list of vertex indices
     """
-    # Get unique values and counts
-    unique_values, counts = torch.unique(r_idx, return_counts=True)
+def r_idx_as_tensor(r_idx: Tensor, dim: int, tensor: Tensor, null_value=-1) \
+        -> Tensor:
+    """Make a index tensor (Region) x (A left-aligned list of vertex indices)
+        using `masked_scatter`. Caution: duplicated elements.
 
-    # Determine the maximum length of the lists (max # of vertices per polygon)
-    max_length = counts.max()
+    Args:
+        r_idx (Tensor): The region indices for where vertices belongs to
+        dim (int): The maximum hyperplane-intersection counts (usually 3)
+        tensor (Tensor): To get the current working dtype and device
+        null_value (TYPE, optional): Masking value
 
-    # Create the output tensor with the specified null value
-    output = torch.full((r_idx.max() + 1, max_length), null_value,
-                        dtype=tensor.dtype, device=tensor.device)
-
-    # Calculate indices and fill the output tensor.
-    # Vertex indices are not sorted although it doesn't matter
-    # since we will sort the vertices using normal to define a polygon.
+    Returns:
+        Tensor: Left-aligned region x a list of vertex indices
+    """
+    # Match region indices with vertex indices
     indices = torch.stack(
         [r_idx, torch.arange(r_idx.shape[0], device=r_idx.device)], dim=1)
-    indices = indices[indices[:, 0].sort()[1]]
 
     # Find the original vertex indices
     indices[:, 1] //= 2 ** dim
+
+    # Remove duplicate original vertex indices
+    indices = torch.unique(indices, dim=0)
+
+    # Sort the indices by region indices
+    indices = indices[indices[:, 0].sort()[1]]
+
+    # Get unique region indices and their counts
+    unique_regions, counts = torch.unique(indices[:, 0], return_counts=True)
+
+    # Determine the maximum length of the lists (max # of vertices per region)
+    max_length = counts.max()
+
+    # Create the output tensor with the specified null value
+    output = torch.full((unique_regions.shape[0], max_length), null_value,
+                        dtype=tensor.dtype, device=tensor.device)
 
     # Efficient updating using counts
     mask = torch.arange(max_length, dtype=tensor.dtype, device=tensor.device
