@@ -647,21 +647,6 @@ def regions_to_vertices_as_tensor(data_dict, null_value=-1):
     # Convert the list of lists into a PyTorch tensor
     return torch.tensor(padded_values)
 
-
-def r_idx_as_tensor(r_idx: Tensor, dim: int, tensor: Tensor, null_value=-1) \
-        -> Tensor:
-    """Make a index tensor (Region) x (A left-aligned list of vertex indices)
-        using `masked_scatter`. Caution: duplicated elements.
-
-    Args:
-        r_idx (Tensor): The region indices for where vertices belongs to
-        dim (int): The maximum hyperplane-intersection counts (usually 3)
-        tensor (Tensor): To get the current working dtype and device
-        null_value (TYPE, optional): Masking value
-
-    Returns:
-        Tensor: Left-aligned region x a list of vertex indices
-    """
 def r_idx_as_tensor(r_idx: Tensor, dim: int, tensor: Tensor, null_value=-1) \
         -> Tensor:
     """Make a index tensor (Region) x (A left-aligned list of vertex indices)
