@@ -79,7 +79,7 @@ class TropicalHashGrid(Module):
         return marks
 
     def _skeleton(self, indices: Tensor, future: Tensor, pruning: bool = True) -> Tensor:
-        """Find valid edges
+        """Find valid edges based on sign vectors
 
         Args:
             indices (Tensor): UxUxUxD
@@ -107,6 +107,33 @@ class TropicalHashGrid(Module):
                                    indices[:, :-1, :].reshape(-1)], dim=-1)]
             edges += [torch.stack([indices[:, :, 1:].reshape(-1),
                                    indices[:, :, :-1].reshape(-1)], dim=-1)]
+
+        return torch.cat(edges, dim=0)
+
+    def _skeleton_dist(self, indices: Tensor, dist: Tensor, max_grad: float = None) -> Tensor:
+        """Find valid edges based on distance from the surface
+
+        Args:
+            indices (Tensor): UxUxUxD
+            dist (Tensor): UxUxUxR, Unsigned Distance from the surface
+            max_grad (float): Maximum norm of SDF gradient
+        """
+        assert 3 == indices.shape[-1]
+        if max_grad == None:
+            max_grad = 1
+        indices = self.p2v(indices)  # UxUxUxD -> UxUxU
+        len_max = torch.diff(self.marks).max().item()
+        eps = (torch.sqrt(torch.tensor(3.0))) * 2 * len_max * max_grad
+
+        # axis-x
+        m = (dist[1:, :, :] <= eps) & (dist[:-1, :, :] <= eps)
+        edges = [torch.stack([indices[1:, :, :][m], indices[:-1, :, :][m]], dim=-1)]  # Ex2
+        # axis-y
+        m = (dist[:, 1:, :] <= eps) & (dist[:, :-1, :] <= eps)
+        edges += [torch.stack([indices[:, 1:, :][m], indices[:, :-1, :][m]], dim=-1)]
+        # axis-z
+        m = (dist[:, :, 1:] <= eps) & (dist[:, :, :-1] <= eps)
+        edges += [torch.stack([indices[:, :, 1:][m], indices[:, :, :-1][m]], dim=-1)]
 
         return torch.cat(edges, dim=0)
 
@@ -158,14 +185,23 @@ class TropicalHashGrid(Module):
                     indices = torch.stack(torch.meshgrid(x, indexing="ij"), dim=-1)
                     x = net.preprocess_inverse(self.marks[indices.reshape(-1, D)])
 
-                    GRID_PRUNING = True
-                    if GRID_PRUNING:
+                    PRUNING_MODE = "distance" # "distance" or "sign"
+                    if PRUNING_MODE == "distance": # distance-based grid pruning
+                        max_grad = 0
+                        with torch.enable_grad():
+                            x.requires_grad_()
+                            sdf = net.sdf(x)[:, 0]
+                            sdf.sum().backward()
+                            max_grad = x.grad.norm(p=2, dim=-1).max()
+                        dist = sdf.abs().view(*indices.shape[:-1], -1).squeeze(-1)
+                        edges += [self._skeleton_dist(indices, dist, max_grad)]
+                    elif PRUNING_MODE == "sign": # sign-vector based grid pruning
                         future, offset, _ = net.region(x)
                         future = future[:, offset.shape[1]:]
                         future = future.view(*indices.shape[:-1], -1)
                         edges += [self._skeleton(indices, future)]
-                    else:
-                        edges += [self._skeleton(indices, None, pruning=GRID_PRUNING)]
+                    else: # no pruning
+                        edges += [self._skeleton(indices, None, pruning=False)]
 
         edges = torch.cat(edges, dim=0)
 
